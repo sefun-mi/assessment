@@ -3,6 +3,7 @@ package com.assessment.api_design.data.domain.transaction.model;
 
 import com.assessment.api_design.common.enums.PaymentGateway;
 import com.assessment.api_design.common.enums.TransactionStatus;
+import com.assessment.api_design.common.model.BaseEntity;
 import com.assessment.api_design.data.domain.wallet.model.Wallet;
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,7 +16,7 @@ import java.math.BigDecimal;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Transaction {
+public class Transaction extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String reference;
@@ -34,11 +35,10 @@ public class Transaction {
     @Column(precision = 20, scale = 2)
     private BigDecimal debit;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             name = "wallet_id",
-            nullable = false,
-            unique = true
+            nullable = false
     )
     @ToString.Exclude
     private Wallet wallet;
@@ -47,6 +47,6 @@ public class Transaction {
 
     @PrePersist
     private void generateReference(){
-        this.reference = "tx-".concat(RandomStringUtils.randomAlphanumeric(7)); //short, human-readable/shareable
+        this.reference = "tx-".concat(RandomStringUtils.randomNumeric(7)); //short, human-readable/shareable
     }
 }

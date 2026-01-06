@@ -4,7 +4,7 @@ package com.assessment.api_design.data.domain.account.DAS;
 import com.assessment.api_design.common.mapper.MapperUtil;
 import com.assessment.api_design.data.domain.account.model.LinkedAccount;
 import com.assessment.api_design.data.domain.account.repository.LinkedAccountRepository;
-import com.assessment.api_design.interactor.linkedaccounts.api.response.LinkedAccountsResponse;
+import com.assessment.api_design.interactor.accounts.api.response.LinkedAccountsResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

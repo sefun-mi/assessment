@@ -6,7 +6,7 @@ import com.assessment.api_design.interactor.deposit.api.request.DepositRequest;
 
 
 public interface PaymentsProvider {
-    Object initialize(DepositRequest depositRequest);
+    Object initialize(String reference, DepositRequest depositRequest);
 
     Object proceed(TransactionDTO transactionDTO);
 

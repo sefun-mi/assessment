@@ -28,7 +28,6 @@ public class LinkAccountDAS {
         LinkedAccount linkedAccount = new LinkedAccount();
         MapperUtil.copyPresentProperties(linkAccountRequest, linkedAccount);
         linkedAccount.setWallet(wallet);
-        linkedAccount.setUser(wallet.getUser());
         linkedAccountRepository.save(linkedAccount);
 
     }

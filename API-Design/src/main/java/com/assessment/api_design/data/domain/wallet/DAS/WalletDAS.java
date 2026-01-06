@@ -14,8 +14,16 @@ import org.springframework.web.server.ResponseStatusException;
 public class WalletDAS {
     private final WalletRepository walletRepository;
 
-    public WalletDTO retrieveUserWallet(String email){
+    public WalletDTO retrieveWallet(String email){
         Wallet wallet = walletRepository.findByUserEmail(email)
+                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "Wallet not found"));
+        WalletDTO walletDTO = new WalletDTO();
+        MapperUtil.copyPresentProperties(wallet, walletDTO);
+        return walletDTO;
+    }
+
+    public WalletDTO retrieveWalletByWalletId(String walletId){
+        Wallet wallet = walletRepository.findByWalletId(walletId)
                 .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "Wallet not found"));
         WalletDTO walletDTO = new WalletDTO();
         MapperUtil.copyPresentProperties(wallet, walletDTO);

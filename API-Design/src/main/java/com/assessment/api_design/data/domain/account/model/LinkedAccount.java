@@ -31,21 +31,20 @@ public class LinkedAccount extends BaseEntity {
     @Column(nullable = false)
     private String bankCode;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             name = "wallet_id",
-            nullable = false,
-            unique = true
+            nullable = false
     )
     @ToString.Exclude
     private Wallet wallet;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(
-            name = "user_id",
-            nullable = false,
-            unique = true
-    )
-    @ToString.Exclude
-    private User user;
+//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(
+//            name = "user_id",
+//            nullable = false,
+//            unique = true
+//    )
+//    @ToString.Exclude
+//    private User user;
 }

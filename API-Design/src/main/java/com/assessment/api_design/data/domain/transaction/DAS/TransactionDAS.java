@@ -1,6 +1,7 @@
 package com.assessment.api_design.data.domain.transaction.DAS;
 
 
+import com.assessment.api_design.common.currency.DenominationUtil;
 import com.assessment.api_design.common.mapper.MapperUtil;
 import com.assessment.api_design.data.domain.transaction.DTO.TransactionDTO;
 import com.assessment.api_design.data.domain.transaction.model.Transaction;
@@ -29,7 +30,7 @@ public class TransactionDAS {
         return transactionDTO;
     }
 
-    public PageImpl<TransactionsResponse.TransactionResponseItem> retrieve(String walletId, Pageable pageable){
+    public Page<TransactionsResponse.TransactionResponseItem> retrieve(String walletId, Pageable pageable){
         Page<Transaction> transactionsPage = transactionRepository.findByWalletWalletId(walletId, pageable);
         List<TransactionsResponse.TransactionResponseItem> transactionResponseItems = transactionsPage.getContent()
                 .stream().map(this::map).collect(Collectors.toList());
@@ -41,9 +42,9 @@ public class TransactionDAS {
         TransactionsResponse.TransactionResponseItem transactionResponseItem = new TransactionsResponse.TransactionResponseItem();
         MapperUtil.copyPresentProperties(transaction, transactionResponseItem);
         if(transaction.getCredit() != null){
-            transactionResponseItem.setAmount(transaction.getCredit());
+            transactionResponseItem.setAmount(DenominationUtil.majorToMinor(transaction.getCredit()));
         }else {
-            transactionResponseItem.setAmount(transaction.getDebit().negate());
+            transactionResponseItem.setAmount(DenominationUtil.majorToMinor(transaction.getDebit().negate()));
         }
         return transactionResponseItem;
     }

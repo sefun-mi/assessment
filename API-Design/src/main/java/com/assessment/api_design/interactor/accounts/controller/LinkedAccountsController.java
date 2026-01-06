@@ -1,7 +1,7 @@
-package com.assessment.api_design.interactor.linkedaccounts.controller;
+package com.assessment.api_design.interactor.accounts.controller;
 
 import com.assessment.api_design.common.response.WebResponseBuilder;
-import com.assessment.api_design.interactor.linkedaccounts.service.LinkedAccountsService;
+import com.assessment.api_design.interactor.accounts.service.LinkedAccountsService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class LinkedAccountsController {
 
     @GetMapping("/")
     public ResponseEntity<Object> retrieve(@RequestParam(required = false, defaultValue = "0") int pageNumber,
-                                           @RequestParam(required = false, defaultValue = "0") int pageSize,
+                                           @RequestParam(required = false, defaultValue = "10") int pageSize,
                                            @RequestParam String walletId){
         return WebResponseBuilder.buildSuccessResponse(linkedAccountsService.retrieve(pageNumber, pageSize, walletId));
     }

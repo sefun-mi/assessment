@@ -10,16 +10,19 @@ import org.springframework.stereotype.Service;
 @Service("PAYSTACK")
 @RequiredArgsConstructor
 public class PaystackService implements PaymentsProvider{
+    //todo tracker service, cache validation for steps per provider
+
     @Override
-    public Object initialize(DepositRequest depositRequest) {
+    public Object initialize(String reference, DepositRequest depositRequest) {
         log.info("paystack processing");
         log.info("============== initializing transaction");
 
-        return "\"accessCode\":\"access_code\"";
+        return "\"accessCode\":\"access_code\",\"reference\":\""+reference+"\"";
     }
 
     @Override
     public Object proceed(TransactionDTO transactionDTO) {
+        //todo initialization validation
         log.info("paystack processing");
         log.info("============== do-nothing");
         return null;

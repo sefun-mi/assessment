@@ -5,10 +5,7 @@ import com.assessment.api_design.interactor.wallet.service.WalletService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,8 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class WalletController {
     private final WalletService walletService;
 
-    @GetMapping("/")
-    public ResponseEntity<Object> retrieve(@RequestParam String email){
-        return WebResponseBuilder.buildSuccessResponse(walletService.retrieve(email));
+    @GetMapping("/{walletId}")
+    public ResponseEntity<Object> retrieve(@PathVariable String walletId){
+        return WebResponseBuilder.buildSuccessResponse(walletService.retrieve(walletId));
     }
 }

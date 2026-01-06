@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LinkAccountController {
     private final LinkAccountService linkAccountService;
 
-    @PostMapping("/link")
+    @PostMapping("/")
     public ResponseEntity<Object> linkAccount(@Valid @RequestBody LinkAccountRequest linkAccountRequest){
         linkAccountService.linkAccount(linkAccountRequest);
         return WebResponseBuilder

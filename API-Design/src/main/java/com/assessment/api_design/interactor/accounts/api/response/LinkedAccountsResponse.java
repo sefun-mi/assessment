@@ -1,4 +1,4 @@
-package com.assessment.api_design.interactor.linkedaccounts.api.response;
+package com.assessment.api_design.interactor.accounts.api.response;
 
 
 import lombok.AllArgsConstructor;

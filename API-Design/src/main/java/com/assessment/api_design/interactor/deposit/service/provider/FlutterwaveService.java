@@ -14,12 +14,12 @@ import java.util.Optional;
 public class FlutterwaveService implements PaymentsProvider{
     private String ACCESS_TOKEN;
     @Override
-    public Object initialize(DepositRequest depositRequest) {
+    public Object initialize(String reference, DepositRequest depositRequest) {
         log.info("flutterwave processing");
         log.info("============== retrieving authorization");
         log.info("============== encrypting card details");
         log.info("============== posting card details");
-        return null;
+        return "\"reference\":\""+reference+"\"";
 
 }
 

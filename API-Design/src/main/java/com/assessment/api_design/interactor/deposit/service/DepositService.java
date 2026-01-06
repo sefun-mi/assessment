@@ -1,6 +1,7 @@
 package com.assessment.api_design.interactor.deposit.service;
 
 
+import com.assessment.api_design.common.currency.DenominationUtil;
 import com.assessment.api_design.common.enums.PaymentGateway;
 import com.assessment.api_design.data.actions.deposit.DAS.DepositDAS;
 import com.assessment.api_design.data.domain.transaction.DAS.TransactionDAS;
@@ -20,8 +21,9 @@ public class DepositService {
     private final ApplicationContext applicationContext;
 
     public Object initialize(DepositRequest depositRequest){
-        depositDAS.initialize(depositRequest);
-        return fetchProvider(depositRequest.getPaymentGateway()).initialize(depositRequest);
+        depositRequest.setAmount(DenominationUtil.minorToMajor(depositRequest.getAmount()));
+        String reference = depositDAS.initialize(depositRequest).getReference();
+        return fetchProvider(depositRequest.getPaymentGateway()).initialize(reference, depositRequest);
     }
 
     public Object proceed(String reference){
