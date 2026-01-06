@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/accounts")
-@Tag(name = "Linked Accounts", description = "module for operations on accounts linked to a wallet")
+@Tag(name = "Accounts", description = "module for operations on accounts linked to a wallet")
 public class LinkedAccountsController {
     private final LinkedAccountsService linkedAccountsService;
 
